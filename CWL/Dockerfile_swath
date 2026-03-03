@@ -1,0 +1,21 @@
+FROM python:3.11-slim
+
+# Install system dependencies for netCDF4 / HDF5
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libhdf5-dev libnetcdf-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    requests \
+    numpy \
+    xarray \
+    netCDF4 \
+    pyresample \
+    tqdm
+
+# Add the script to the container
+ADD stac_swath_processor.py /stac_swath_processor.py
+
+# Set the entrypoint
+ENTRYPOINT ["python", "/stac_swath_processor.py"]
