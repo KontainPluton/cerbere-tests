@@ -33,3 +33,16 @@ python stac_swath_processor.py \
   --resample_method nearest \
   --min_quality_level 3
 ```
+
+```bash
+python stac_swath_processor.py \
+  --stac_url https://stac-pg-api.ifremer.fr \
+  --collection AVHRR_SST_METOP_B_OSISAF_L2P_v1_0 \
+  --bbox="-70,47,-55,63" \
+  --temporal_extent "2024-06-01T00:00:00Z/2024-06-02T00:00:00Z" \
+  --properties "sea_surface_temperature" \
+  --resolution 0.01 \
+  --resample_method nearest \
+  --min_quality_level 3 \
+  --keep_time
+```
